@@ -1,0 +1,38 @@
+#!/bin/bash
+echo "#######################################"
+echo "### OpenVPN Automated Configuration ###"
+echo "#######################################"
+echo ""
+echo "Reference: https://github.com/BeeTech-global/runbooks/blob/master/sd/openvpn/how-to-configure-openvpn.md"
+echo ""
+#Reading user inputs
+echo "Please input your OpenVPN User and Password"
+read -p "Username: " USERNAME
+read -p "Password: " PASSWORD
+localuser=$(whoami)
+#Installation and Configuration
+BASE_OS=`cat /etc/os-release | grep ID_LIKE | cut -d '=' -f2`
+if [ "$BASE_OS" == "debian" ]; then
+    INSTALL_COMMAND="sudo apt-get -y install openvpn resolvconf"
+elif [ "$BASE_OS" == "ubuntu debian" ]; then
+    INSTALL_COMMAND="sudo apt-get -y install openvpn resolvconf"
+elif [ "$BASE_OS" == "arch" ]; then
+    INSTALL_COMMAND="yay -S --noconfirm openvpn-update-resolv-conf-git"
+else
+    echo "OS not supported, please follow the steps manually"
+    exit 1
+fi
+eval $INSTALL_COMMAND
+sudo chown -R $localuser:$localuser /etc/openvpn
+sudo mv ~/Downloads/client.ovpn /etc/openvpn/
+# sudo echo "script-security 2
+# up /etc/openvpn/update-resolv-conf
+# down /etc/openvpn/update-resolv-conf
+# auth-user-pass /etc/openvpn/beetech.conf" >> /etc/openvpn/client.ovpn
+sudo echo "script-security 2
+auth-user-pass /etc/openvpn/beetech.conf" >> /etc/openvpn/client.ovpn
+sudo echo $USERNAME > /etc/openvpn/beetech.conf && sudo echo $PASSWORD >> /etc/openvpn/beetech.conf
+sudo chmod 0600 /etc/openvpn/beetech.conf
+echo ""
+echo "For starting your VPN connection, run the following command: "
+echo "sudo openvpn --config /etc/openvpn/client.ovpn --auth-retry interact --daemon"
