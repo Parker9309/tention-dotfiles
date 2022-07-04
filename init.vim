@@ -15,7 +15,6 @@ set fileencodings=utf-8,sjis,euc-jp,latin
 set encoding=utf-8
 set title
 set autoindent
-set background=dark
 set nobackup
 set hlsearch
 set showcmd
@@ -56,7 +55,8 @@ set backspace=start,eol,indent
 " Finding files - Search down into subfolders
 set path+=**
 set wildignore+=*/node_modules/*
-
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
 " Turn off paste mode when leaving insert
 autocmd InsertLeave * set nopaste
 
@@ -131,6 +131,7 @@ runtime ./maps.vim
 " ---------------------------------------------------------------------
 
   colorscheme dracula
+  hi Normal guibg=NONE ctermbg=NONE
 
 "}}}
 

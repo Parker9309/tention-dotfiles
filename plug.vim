@@ -8,12 +8,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
 if has("nvim")
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'ryanoasis/vim-devicons'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'kristijanhusak/defx-git'
-  Plug 'kristijanhusak/defx-icons'
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/nvim-lsp-installer'
+  Plug 'kristijanhusak/defx-icons'
   Plug 'kdheepak/lazygit.nvim'
   Plug 'tami5/lspsaga.nvim'
   Plug 'folke/lsp-colors.nvim'
@@ -22,7 +24,6 @@ if has("nvim")
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'onsails/lspkind-nvim'
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
@@ -30,6 +31,10 @@ if has("nvim")
   Plug 'windwp/nvim-autopairs'
   Plug 'windwp/nvim-ts-autotag'
   Plug 'Mofiqul/dracula.nvim'
+  Plug 'APZelos/blamer.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'yuezk/vim-js'
+  Plug 'maxmellon/vim-jsx-pretty'
 endif
 
 Plug 'groenewege/vim-less', { 'for': 'less' }
